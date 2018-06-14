@@ -37,7 +37,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cucumber (>= 3.1.0)
+  cucumber (>= 3.1.1)
   pry-byebug
 
 BUNDLED WITH
