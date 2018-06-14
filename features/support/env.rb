@@ -1,13 +1,13 @@
 require 'cucumber'
 
-TRACING_TOKEN = 'abc'
+require_relative 'tracing'
+
+TRACING = Tracing.new
 
 Before do |scenario|
-  TRACING = PAST_SCENARIO == scenario.name
+  TRACING.url = TRACING.past_scenario == scenario.name ? 'https://foo.com?tracing_param=bar' : 'https://foo.com'
 end
 
 After do |scenario|
-  PAST_SCENARIO = scenario.name if scenario.failed?
-  Object.send(:remove_const, :PAST_SCENARIO) unless scenario.failed?
-  Object.send(:remove_const, :TRACING)
+  TRACING.past_scenario = scenario.name if scenario.failed?
 end
